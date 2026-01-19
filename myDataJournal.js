@@ -1,3 +1,4 @@
+// Github link is: https://github.com/USERDOT1/cs81-module4b-mydataexplorer
 const weekData = [
   {day:"Monday", sleepHours:7.5,screenTime:9,mood:"Depressed",focusLevel:5, workedOnGame:false},
   {day:"Tuesday", sleepHours:8,screenTime:8,mood:"Sad",focusLevel:7,workedOnGame:true},
