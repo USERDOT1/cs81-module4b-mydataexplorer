@@ -8,3 +8,17 @@ const weekData = [
   {day:"Sunday", sleepHours:10,screenTime:,mood:"Good",focusLevel:9,workedOnGame:true}
 ]
 
+// I predict that the days I work on my game and get a good sleep I am happier
+// I also predict a correlation between focus and mood
+function dayWithHighestScreenTime(dayCollection){
+  let highestScreenTimeDay = {day:"NA",screenTime:-1};
+  for (let day of dayCollection){
+    if (day.screenTime > highestScreenTimeDay.screenTime){
+      highestScreenTimeDay = day;
+    }
+  }
+  return(highestScreenTimeDay.day);
+}
+
+console.log(dayWithHighestScreenTime(weekData));
+
