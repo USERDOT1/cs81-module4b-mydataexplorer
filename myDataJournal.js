@@ -5,7 +5,7 @@ const weekData = [
   {day:"Thursday", sleepHours:8,screenTime:7,mood:"Neutral",focusLevel:5,workedOnGame:true},
   {day:"Friday", sleepHours:8,screenTime:10,mood:"Depressed",focusLevel:3,workedOnGame:false},
   {day:"Saturaday", sleepHours:10,screenTime:13,mood:"Good",focusLevel:9,workedOnGame:true},
-  {day:"Sunday", sleepHours:10,screenTime:,mood:"Good",focusLevel:9,workedOnGame:true}
+  {day:"Sunday", sleepHours:10,screenTime:10,mood:"Good",focusLevel:9,workedOnGame:true}
 ]
 
 // I predict that the days I work on my game and get a good sleep I am happier
@@ -20,5 +20,26 @@ function dayWithHighestScreenTime(dayCollection){
   return(highestScreenTimeDay.day);
 }
 
-console.log(dayWithHighestScreenTime(weekData));
+function correlateFocusAndWorkedOnGame(dayCollection){
+  let totalWorkedOnGameDays = 0;
+  let totalFocusWorkedOnGameDays = 0;
+  let totalDidntWorkOnGameDays = 0;
+  let totalFocusDidntWorkOnGameDays = 0;
+  for (let day of dayCollection){
+    if (day.workedOnGame){
+      totalWorkedOnGameDays += 1;
+      totalFocusWorkedOnGameDays += day.focusLevel;
+    }
+    else{
+      totalDidntWorkOnGameDays += 1;
+      totalFocusDidntWorkOnGameDays += day.focusLevel;
+    }
+  }
+  return "On days when I worked on my game my average focus was "+(totalFocusWorkedOnGameDays/totalWorkedOnGameDays)+" and on days when I didn't my average focus was "+(totalFocusDidntWorkOnGameDays/totalDidntWorkOnGameDays)
+}
 
+function mostFrequentMood(dayCollection){
+  
+}
+console.log(dayWithHighestScreenTime(weekData));
+console.log(correlateFocusAndWorkedOnGame(weekData))
