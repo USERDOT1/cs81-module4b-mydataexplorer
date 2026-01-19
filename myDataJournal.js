@@ -10,6 +10,7 @@ const weekData = [
 
 // I predict that the days I work on my game and get a good sleep I am happier
 // I also predict a correlation between focus and mood
+// I predict that I sleep less when I work on my game
 function dayWithHighestScreenTime(dayCollection){
   let highestScreenTimeDay = {day:"NA",screenTime:-1};
   for (let day of dayCollection){
@@ -41,5 +42,47 @@ function correlateFocusAndWorkedOnGame(dayCollection){
 function mostFrequentMood(dayCollection){
   
 }
+
+function focusPerHourOfSleep(dayCollection){
+  let totalFocus = 0;
+  let totalSleepHrs = 0;
+  for (let day of dayCollection){
+    totalFocus += day.focusLevel;
+    totalSleepHrs += day.sleepHours;
+  }
+  return(totalFocus/totalSleepHrs);
+}
+
+function screenTimePerHourOfSleep(dayCollection){
+  let totalScreenTime = 0;
+  let totalSleepHrs = 0;
+  for (let day of dayCollection){
+    totalScreenTime += day.screenTime;
+    totalSleepHrs += day.sleepHours;
+  }
+  return(totalScreenTime/totalSleepHrs);
+}
+
+function correlateSleepAndWorkedOnGame(dayCollection){
+  let totalWorkedOnGameDays = 0;
+  let totalSleepWorkedOnGameDays = 0;
+  let totalDidntWorkOnGameDays = 0;
+  let totalSleepDidntWorkOnGameDays = 0;
+  for (let day of dayCollection){
+    if (day.workedOnGame){
+      totalWorkedOnGameDays += 1;
+      totalSleepWorkedOnGameDays += day.sleepHours;
+    }
+    else{
+      totalDidntWorkOnGameDays += 1;
+      totalSleepDidntWorkOnGameDays += day.sleepHours;
+    }
+  }
+  return "On days when I worked on my game my average sleep was "+(totalSleepWorkedOnGameDays/totalWorkedOnGameDays)+" and on days when I didn't my average sleep was "+(totalSleepDidntWorkOnGameDays/totalDidntWorkOnGameDays)
+}
+
 console.log(dayWithHighestScreenTime(weekData));
-console.log(correlateFocusAndWorkedOnGame(weekData))
+console.log(correlateFocusAndWorkedOnGame(weekData));
+console.log("For each hour of sleep I got roughly "+focusPerHourOfSleep(weekData)+" points of focus");
+console.log("For each hour of sleep I spent "+screenTimePerHourOfSleep(weekData)+" hours on screens");
+console.log(correlateSleepAndWorkedOnGame(weekData));
